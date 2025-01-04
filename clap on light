@@ -1,0 +1,32 @@
+Overview
+The Clap-On Light project allows you to turn a light on or off with the sound of claps. A microphone sensor listens for claps and sends signals to the Arduino, which then toggles a relay module to control the light.
+Required Components
+Hardware
+Arduino Uno (or any compatible microcontroller board)
+Microphone Sensor Module (e.g., KY-038 or LM393-based sound sensor)
+Relay Module (for controlling high-voltage devices like light bulbs)
+Light Bulb or LED (as the output device)
+Jumper Wires (male-to-male and male-to-female)
+Breadboard (for temporary circuit connections)
+Power Source (e.g., USB cable for Arduino or a 5V power supply)
+Circuit Diagram
+Here’s how to connect everything:
+
+Microphone Sensor:
+
+VCC → Arduino 5V
+GND → Arduino GND
+OUT → Arduino Digital Pin 2
+Relay Module:
+
+VCC → Arduino 5V
+GND → Arduino GND
+IN → Arduino Digital Pin 3
+Connect the Light Bulb to the relay terminals as per the relay module's wiring instructions.
+Light Bulb/LED:
+
+Connect one terminal of the bulb/LED to the relay's NO (Normally Open) port and the other terminal to a power source (mains power or DC supply).
+How It Works
+Microphone Sensor: Detects sound and outputs a HIGH signal when a loud sound (clap) is detected.
+Arduino: Monitors the output from the microphone sensor and counts the claps.
+Relay Module: Toggles the light on/off based on the Arduino's decision.
