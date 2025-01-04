@@ -1,0 +1,43 @@
+Arduino Code
+Here’s the code for the project:
+// Pin Definitions
+const int microphonePin = 2; // Microphone sensor output pin
+const int relayPin = 3;      // Relay control pin
+
+// Variables
+unsigned long clapTime = 0;  // To store the time of the last clap
+int clapCount = 0;           // To count claps
+unsigned long debounceDelay = 500; // Minimum time between claps (milliseconds)
+unsigned long resetDelay = 2000;   // Time to reset clap count
+
+void setup() {
+  pinMode(microphonePin, INPUT); // Microphone sensor as input
+  pinMode(relayPin, OUTPUT);     // Relay as output
+  digitalWrite(relayPin, LOW);   // Start with the relay off
+  Serial.begin(9600);            // Initialize serial monitor for debugging
+}
+
+void loop() {
+  if (digitalRead(microphonePin) == HIGH) {
+    unsigned long currentTime = millis();
+
+    // Check if the clap is within the debounce delay
+    if (currentTime - clapTime > debounceDelay) {
+      clapTime = currentTime; // Update the time of the last clap
+      clapCount++;            // Increment the clap count
+      Serial.println("Clap detected!");
+    }
+
+    // If two claps are detected within the reset delay, toggle the light
+    if (clapCount == 2 && (currentTime - clapTime) < resetDelay) {
+      digitalWrite(relayPin, !digitalRead(relayPin)); // Toggle relay state
+      Serial.println("Light toggled!");
+      clapCount = 0; // Reset clap count
+    }
+
+    // Reset the clap count if the reset delay is exceeded
+    if (currentTime - clapTime > resetDelay) {
+      clapCount = 0;
+    }
+  }
+}
