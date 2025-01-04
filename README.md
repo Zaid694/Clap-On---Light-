@@ -77,8 +77,8 @@ Clap-On-Light/
 
 ## Demo
 
-![Light Turning On](images/demo_image_1.png)
-![Light Turning Off](images/demo_image_2.png)
+![Light Turning On]"C:\Users\VIC\Downloads\on.jpg"
+![Light Turning Off]"C:\Users\VIC\Downloads\off.jpg"
 
 ## Customization
 
